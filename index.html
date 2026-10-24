@@ -2,318 +2,476 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bright Future Academy — learn, grow and achieve your goals.">
+  <title>Bright Future Academy | Learn Without Limits</title>
+  <style>
+    :root {
+      --purple: #6428df;
+      --pink: #ff4fa0;
+      --yellow: #ffe66d;
+      --ink: #21183b;
+      --muted: #6e6880;
+      --paper: #fffaff;
+    }
 
-    <title>Bright Future Academy | Learn Without Limits</title>
-    <meta name="description" content="Explore courses and learning opportunities at Bright Future Academy.">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1120px, 90%); margin: auto; }
+    .section { padding: 82px 0; }
+    .eyebrow {
+      color: var(--purple); font-weight: 800; text-transform: uppercase;
+      letter-spacing: 2px; font-size: .78rem; margin-bottom: 12px;
+    }
+    h1, h2, h3 { line-height: 1.15; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -1px; }
+    .section-head { text-align: center; max-width: 660px; margin: 0 auto 40px; }
+    .section-head p { color: var(--muted); margin-top: 14px; }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,250,255,.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #eee5ff;
+    }
+    nav {
+      min-height: 74px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .brand { font-weight: 900; font-size: 1.12rem; letter-spacing: -.5px; }
+    .brand span { color: var(--purple); }
+    .nav-links { display: flex; gap: 24px; align-items: center; font-size: .92rem; font-weight: 650; }
+    .nav-links a:hover { color: var(--pink); }
+    .menu-toggle {
+      display: none; border: 0; background: #f0e8ff; border-radius: 10px;
+      padding: 8px 12px; cursor: pointer;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 13px 21px; border-radius: 14px;
+      border: 0; background: var(--yellow); color: #25173e;
+      font-weight: 850; cursor: pointer; transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px #30105b20; }
+    .btn-primary { background: var(--purple); color: white; }
+    .btn-small { padding: 10px 15px; border-radius: 11px; }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #202044;
-            background: #fffdf8;
-            line-height: 1.6;
-        }
+    .hero {
+      position: relative; overflow: hidden; padding: 82px 0 76px;
+      background: linear-gradient(130deg, #6b2ce7 0%, #9a43ec 53%, #ff65ad 115%);
+      color: white;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .hero::before { width: 310px; height: 310px; right: -90px; top: -130px; background: #ffffff16; }
+    .hero::after { width: 200px; height: 200px; left: -110px; bottom: -80px; background: #ffe66d25; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 42px; position: relative; }
+    .hero .eyebrow { color: var(--yellow); }
+    .hero h1 { font-size: clamp(2.7rem, 6vw, 4.8rem); letter-spacing: -2.5px; max-width: 680px; }
+    .hero h1 span { color: var(--yellow); }
+    .hero-copy { color: #f6eaff; font-size: 1.07rem; max-width: 550px; margin: 22px 0 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-light { background: white; color: var(--purple); }
+    .hero-note { margin-top: 22px; font-size: .85rem; color: #f7eaff; }
+    .hero-art {
+      background: linear-gradient(145deg, #ffffff32, #ffffff0d);
+      border: 1px solid #ffffff4a; border-radius: 32px; padding: 28px;
+      transform: rotate(2deg); box-shadow: 0 25px 65px #340d6d35;
+      animation: float 5s ease-in-out infinite;
+    }
+    .art-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+    .art-icon { font-size: 2.5rem; }
+    .pill { background: var(--yellow); color: #382254; border-radius: 999px; padding: 6px 12px; font-size: .75rem; font-weight: 850; }
+    .art-card { background: white; color: var(--ink); border-radius: 22px; padding: 24px; }
+    .art-card h3 { font-size: 1.4rem; margin-bottom: 8px; }
+    .art-card p { color: var(--muted); font-size: .9rem; }
+    .art-bars { display: grid; gap: 11px; margin-top: 22px; }
+    .bar { height: 10px; background: #eee6ff; border-radius: 99px; overflow: hidden; }
+    .bar span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--purple), var(--pink)); }
+    .art-bottom { display: flex; justify-content: space-between; margin-top: 22px; font-size: .85rem; font-weight: 800; }
+    .stats { background: white; border-bottom: 1px solid #f0e8ff; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; padding: 26px 0; text-align: center; }
+    .stats strong { display: block; font-size: 1.55rem; color: var(--purple); }
+    .stats span { font-size: .85rem; color: var(--muted); }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            padding: 20px 8%;
-            background: white;
-            flex-wrap: wrap;
-        }
+    .courses-grid, .teachers-grid, .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .course-card, .teacher-card, .review-card {
+      background: white; border: 1px solid #eee6f7; border-radius: 22px;
+      padding: 25px; box-shadow: 0 10px 35px #37205208;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .course-card:hover, .teacher-card:hover, .review-card:hover {
+      transform: translateY(-7px); box-shadow: 0 18px 40px #37205214;
+    }
+    .course-icon { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; font-size: 1.8rem; margin-bottom: 22px; }
+    .lavender { background: #eee5ff; }
+    .peach { background: #ffe5dc; }
+    .lemon { background: #fff4b9; }
+    .mint { background: #d9f9eb; }
+    .course-card h3, .teacher-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+    .course-card p, .teacher-card p, .review-card p { color: var(--muted); font-size: .93rem; }
+    .tag { display: inline-block; margin-top: 18px; padding: 6px 10px; background: #f5efff; color: var(--purple); border-radius: 9px; font-size: .78rem; font-weight: 800; }
 
-        .logo {
-            font-size: 23px;
-            font-weight: 800;
-            color: #5927c7;
-        }
+    .about { background: linear-gradient(110deg, #f1eaff, #fff0f7); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .about-copy p { color: var(--muted); margin: 17px 0; }
+    .check-list { list-style: none; display: grid; gap: 12px; margin-top: 20px; }
+    .check-list li::before { content: "✓"; color: var(--purple); font-weight: 900; margin-right: 10px; }
+    .about-panel { background: white; border-radius: 28px; padding: 30px; box-shadow: 0 15px 45px #4b2c6b12; }
+    .about-panel .big-emoji { font-size: 3rem; }
+    .result-row { display: flex; justify-content: space-between; gap: 16px; padding: 17px 0; border-bottom: 1px solid #eee8f7; }
+    .result-row:last-child { border: 0; }
+    .result-row strong { color: var(--purple); }
+    .sample-label { color: #8b6b00; background: #fff4c4; padding: 7px 10px; border-radius: 9px; display: inline-block; font-size: .76rem; font-weight: 800; margin-top: 15px; }
 
-        nav a {
-            color: #33334f;
-            text-decoration: none;
-            font-weight: bold;
-            margin-left: 20px;
-        }
+    .teacher-avatar { height: 135px; border-radius: 18px; display: grid; place-items: center; font-size: 3.2rem; margin-bottom: 20px; }
+    .teacher-card .subject { color: var(--purple); font-weight: 800; font-size: .85rem; margin-bottom: 8px; }
+    .stars { color: #f2a900; letter-spacing: 3px; margin-bottom: 12px; }
+    .reviewer { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+    .reviewer-icon { width: 42px; height: 42px; border-radius: 50%; background: #eee5ff; display: grid; place-items: center; font-weight: 900; }
+    .reviewer strong { display: block; font-size: .88rem; }
+    .reviewer small { color: var(--muted); }
 
-        nav a:hover {
-            color: #f15bb5;
-        }
+    .cta { padding: 65px 0; background: linear-gradient(120deg, #6428df, #d53ca9); color: white; text-align: center; }
+    .cta h2 { max-width: 680px; margin: 0 auto; }
+    .cta p { color: #f7eaff; margin: 16px auto 24px; max-width: 570px; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; align-items: start; }
+    .contact-info p { color: var(--muted); margin-top: 14px; }
+    .contact-hint { margin-top: 20px; padding: 15px; background: #fff4c4; border-radius: 13px; color: #65500b; font-size: .85rem; }
+    form { background: white; border: 1px solid #eee6f7; padding: 28px; border-radius: 24px; box-shadow: 0 12px 35px #37205208; }
+    .field { margin-bottom: 17px; }
+    label { display: block; font-weight: 750; font-size: .88rem; margin-bottom: 7px; }
+    input, select, textarea {
+      width: 100%; border: 1px solid #ddd3ed; border-radius: 12px;
+      padding: 13px 14px; background: #fffaff; color: var(--ink); outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px #6428df16; }
+    textarea { min-height: 110px; resize: vertical; }
+    .form-message { margin-top: 14px; font-size: .9rem; font-weight: 700; }
+    footer { padding: 28px 0; background: #21183b; color: white; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    footer p { color: #c9bfdd; font-size: .85rem; }
+    .footer-links { display: flex; gap: 18px; font-size: .85rem; }
+    .footer-links a:hover { color: var(--yellow); }
 
-        .hero {
-            padding: 90px 8%;
-            text-align: center;
-            color: white;
-            background: linear-gradient(125deg, #5927c7, #9237db, #f15bb5);
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 7px 16px;
-            margin-bottom: 20px;
-            border-radius: 30px;
-            background: #ffffff25;
-            border: 1px solid #ffffff70;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .hero h1 {
-            max-width: 850px;
-            margin: 0 auto 20px;
-            font-size: clamp(36px, 6vw, 64px);
-            line-height: 1.1;
-        }
-
-        .hero p {
-            max-width: 620px;
-            margin: 0 auto;
-            font-size: 18px;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 28px;
-            padding: 14px 25px;
-            border-radius: 10px;
-            background: #ffdf5d;
-            color: #292047;
-            font-weight: 800;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .button:hover {
-            transform: translateY(-3px);
-        }
-
-        .section {
-            padding: 70px 8%;
-            text-align: center;
-        }
-
-        .eyebrow {
-            color: #8a36d6;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 13px;
-        }
-
-        .section h2 {
-            margin: 8px 0 12px;
-            font-size: clamp(28px, 4vw, 40px);
-        }
-
-        .intro {
-            max-width: 620px;
-            margin: 0 auto;
-            color: #66667d;
-        }
-
-        .courses {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 35px;
-            text-align: left;
-        }
-
-        .card {
-            padding: 28px;
-            border-radius: 18px;
-            background: white;
-            border: 1px solid #eee8fa;
-            box-shadow: 0 8px 25px #39236b0d;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 14px 30px #39236b1c;
-        }
-
-        .emoji {
-            display: inline-grid;
-            place-items: center;
-            width: 58px;
-            height: 58px;
-            border-radius: 16px;
-            background: #f0e6ff;
-            font-size: 28px;
-        }
-
-        .card h3 {
-            margin: 17px 0 8px;
-            color: #5927c7;
-        }
-
-        .card p {
-            color: #66667d;
-        }
-
-        .about {
-            background: #f1eaff;
-        }
-
-        .about-content {
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-        }
-
-        .feature {
-            padding: 12px 18px;
-            border-radius: 12px;
-            background: white;
-            font-weight: bold;
-        }
-
-        .contact {
-            background: #202044;
-            color: white;
-        }
-
-        .contact .intro {
-            color: #e0d9f3;
-        }
-
-        footer {
-            padding: 24px 8%;
-            background: #17172f;
-            color: #ddd6f3;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            nav {
-                justify-content: center;
-                text-align: center;
-            }
-
-            nav a {
-                display: inline-block;
-                margin: 8px;
-            }
-
-            .hero {
-                padding: 65px 6%;
-            }
-
-            .section {
-                padding: 55px 6%;
-            }
-        }
-    </style>
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(2deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 800px) {
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 0; }
+      .hero-art { max-width: 480px; margin: 5px auto 0; width: 100%; }
+      .courses-grid, .teachers-grid, .reviews-grid { grid-template-columns: repeat(2,1fr); }
+      .nav-links {
+        display: none; position: absolute; top: 73px; left: 0; right: 0;
+        padding: 20px 5%; background: white; border-bottom: 1px solid #eee5ff;
+        flex-direction: column; align-items: stretch; gap: 17px;
+      }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: inline-block; }
+      .nav-links .btn { width: 100%; }
+    }
+    @media (max-width: 540px) {
+      .section { padding: 62px 0; }
+      .courses-grid, .teachers-grid, .reviews-grid, .stats-grid { grid-template-columns: 1fr; }
+      .stats-grid { gap: 15px; }
+      .hero h1 { letter-spacing: -1.4px; }
+      .hero-actions .btn { width: 100%; }
+      .course-card, .teacher-card, .review-card { padding: 22px; }
+      form { padding: 20px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
-
 <body>
-
-    <nav>
-        <div class="logo">✦ Bright Future</div>
-        <div>
-            <a href="#home">Home</a>
-            <a href="#courses">Courses</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">🎓 Bright <span>Future</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰ Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#courses">Courses</a>
+        <a href="#about">About</a>
+        <a href="#teachers">Teachers</a>
+        <a href="#reviews">Reviews</a>
+        <a class="btn btn-small btn-primary" href="#contact">Enquire Now ↗</a>
+      </div>
     </nav>
+  </header>
 
-    <header class="hero" id="home">
-        <div class="tag">YOUR FUTURE STARTS HERE ✨</div>
-        <h1>Dream Big.<br>Learn Boldly.</h1>
-        <p>
-            Discover your potential with learning that builds
-            knowledge, confidence and skills for the future.
-        </p>
-        <a class="button" href="#courses">Explore Our Courses ↗</a>
-    </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">✨ Your journey starts here</p>
+          <h1>Learn today.<br><span>Lead tomorrow.</span></h1>
+          <p class="hero-copy">Discover your potential with supportive teachers, engaging lessons and a learning experience designed to help you grow.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#courses">Explore Courses →</a>
+            <a class="btn btn-light" href="#about">Discover Our Academy</a>
+          </div>
+          <p class="hero-note">📚 Clear concepts · Personal attention · A brighter future</p>
+        </div>
+        <div class="hero-art" aria-label="Illustration of a learning progress dashboard">
+          <div class="art-top"><span class="art-icon">🚀</span><span class="pill">GROW EVERY DAY</span></div>
+          <div class="art-card">
+            <h3>Your potential is limitless.</h3>
+            <p>Build strong foundations, one lesson at a time.</p>
+            <div class="art-bars">
+              <div><p>Concepts</p><div class="bar"><span style="width:88%"></span></div></div>
+              <div><p>Practice</p><div class="bar"><span style="width:72%"></span></div></div>
+              <div><p>Confidence</p><div class="bar"><span style="width:94%"></span></div></div>
+            </div>
+            <div class="art-bottom"><span>Keep learning ✨</span><span>✦ ✦ ✦</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container stats-grid">
+        <div><strong>Learn</strong><span>With curiosity</span></div>
+        <div><strong>Practice</strong><span>With confidence</span></div>
+        <div><strong>Achieve</strong><span>With consistency</span></div>
+      </div>
+    </section>
 
     <section class="section" id="courses">
-        <div class="eyebrow">Learn something amazing</div>
-        <h2>Explore Our Courses</h2>
-        <p class="intro">
-            Build strong foundations, discover new interests
-            and take your next step with confidence.
-        </p>
-
-        <div class="courses">
-            <article class="card">
-                <div class="emoji">📐</div>
-                <h3>Mathematics</h3>
-                <p>Develop logical thinking and solve problems with confidence.</p>
-            </article>
-
-            <article class="card">
-                <div class="emoji">🔬</div>
-                <h3>Science</h3>
-                <p>Explore scientific ideas and understand the world around you.</p>
-            </article>
-
-            <article class="card">
-                <div class="emoji">💻</div>
-                <h3>Computer Science</h3>
-                <p>Discover programming and build essential digital skills.</p>
-            </article>
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Find your path</p>
+          <h2>Courses that spark curiosity</h2>
+          <p>Explore the subjects you love with lessons designed to make learning clearer and more enjoyable.</p>
         </div>
+        <div class="courses-grid">
+          <article class="course-card reveal">
+            <div class="course-icon lavender">📐</div>
+            <h3>Mathematics</h3>
+            <p>Build problem-solving skills with step-by-step explanations, practice and concept clarity.</p>
+            <span class="tag">Logic · Practice · Progress</span>
+          </article>
+          <article class="course-card reveal">
+            <div class="course-icon peach">🔬</div>
+            <h3>Science</h3>
+            <p>Explore scientific ideas through clear explanations, real-world examples and curiosity.</p>
+            <span class="tag">Explore · Understand · Apply</span>
+          </article>
+          <article class="course-card reveal">
+            <div class="course-icon lemon">💻</div>
+            <h3>Computer Science</h3>
+            <p>Start building digital skills with programming fundamentals and logical thinking.</p>
+            <span class="tag">Code · Create · Innovate</span>
+          </article>
+        </div>
+      </div>
     </section>
 
     <section class="section about" id="about">
-        <div class="about-content">
-            <div class="eyebrow">More than just lessons</div>
-            <h2>Learn Today. Lead Tomorrow.</h2>
-            <p class="intro">
-                Bright Future Academy is a sample academy website
-                designed to demonstrate a welcoming, student-focused
-                learning experience.
-            </p>
-
-            <div class="features">
-                <div class="feature">🎯 Clear Learning Goals</div>
-                <div class="feature">🌱 Growth Mindset</div>
-                <div class="feature">💡 Curious Minds</div>
-            </div>
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <p class="eyebrow">More than a classroom</p>
+          <h2>A place to learn, grow and shine.</h2>
+          <p>At Bright Future Academy, learning is a journey. Our demo website showcases how an academy can communicate its teaching approach and help students find the right learning path.</p>
+          <ul class="check-list">
+            <li>Concept-focused learning</li>
+            <li>Supportive learning environment</li>
+            <li>Practice and revision routines</li>
+            <li>Encouragement to ask questions</li>
+          </ul>
+          <span class="sample-label">Demo academy content — customise before launch</span>
         </div>
+        <div class="about-panel reveal">
+          <span class="big-emoji">🏆</span>
+          <h3 style="font-size:1.5rem;margin:12px 0 5px">Celebrate every step forward</h3>
+          <p style="color:var(--muted)">A sample layout for showcasing academy milestones.</p>
+          <div class="result-row"><span>Concept mastery</span><strong>One lesson at a time</strong></div>
+          <div class="result-row"><span>Learning habit</span><strong>Practice regularly</strong></div>
+          <div class="result-row"><span>Student growth</span><strong>Keep improving</strong></div>
+          <span class="sample-label">Illustrative content, not verified results</span>
+        </div>
+      </div>
     </section>
 
-    <section class="section contact" id="contact">
-        <div class="eyebrow">Take the first step</div>
-        <h2>Ready to Start Learning?</h2>
-        <p class="intro">
-            Contact the academy to ask about courses and admissions.
-        </p>
-        <a class="button"
-           href="mailto:admissions@example.com?subject=Course%20Enquiry">
-            Send an Enquiry ✉
-        </a>
+    <section class="section" id="teachers">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Meet the mentors</p>
+          <h2>Guidance that makes a difference</h2>
+          <p>Sample teacher cards — replace these with real staff details only after getting permission.</p>
+        </div>
+        <div class="teachers-grid">
+          <article class="teacher-card reveal">
+            <div class="teacher-avatar lavender">👩‍🏫</div>
+            <p class="subject">MATHEMATICS</p>
+            <h3>Mathematics Mentor</h3>
+            <p>Focuses on building confidence through clear methods and guided practice.</p>
+            <span class="tag">Concept clarity</span>
+          </article>
+          <article class="teacher-card reveal">
+            <div class="teacher-avatar peach">👨‍🔬</div>
+            <p class="subject">SCIENCE</p>
+            <h3>Science Mentor</h3>
+            <p>Connects classroom concepts with everyday observations and examples.</p>
+            <span class="tag">Learn by exploring</span>
+          </article>
+          <article class="teacher-card reveal">
+            <div class="teacher-avatar mint">👩‍💻</div>
+            <p class="subject">COMPUTER SCIENCE</p>
+            <h3>Technology Mentor</h3>
+            <p>Introduces programming and encourages students to think step by step.</p>
+            <span class="tag">Think and create</span>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <footer>
-        <p>© 2026 Bright Future Academy · Demo website for portfolio use</p>
-    </footer>
+    <section class="section" id="reviews" style="background:#fff4fa">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">A little encouragement</p>
+          <h2>Every learner has a story</h2>
+          <p>The cards below are examples for design purposes, not real student testimonials.</p>
+        </div>
+        <div class="reviews-grid">
+          <article class="review-card reveal">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“The step-by-step lesson format makes difficult topics feel easier to approach.”</p>
+            <div class="reviewer"><div class="reviewer-icon">S</div><div><strong>Sample Student</strong><small>Demo review</small></div></div>
+          </article>
+          <article class="review-card reveal">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“I like the focus on regular practice and understanding the basics.”</p>
+            <div class="reviewer"><div class="reviewer-icon">A</div><div><strong>Sample Learner</strong><small>Demo review</small></div></div>
+          </article>
+          <article class="review-card reveal">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>“A welcoming learning environment can help students keep moving forward.”</p>
+            <div class="reviewer"><div class="reviewer-icon">R</div><div><strong>Sample Learner</strong><small>Demo review</small></div></div>
+          </article>
+        </div>
+        <p style="text-align:center;color:var(--muted);font-size:.82rem;margin-top:20px">Demo content only. Replace with genuine reviews and approved results before using for a real academy.</p>
+      </div>
+    </section>
 
+    <section class="cta">
+      <div class="container reveal">
+        <p class="eyebrow" style="color:var(--yellow)">Ready to take the next step?</p>
+        <h2>Your brighter future begins with one small step.</h2>
+        <p>Explore a course, ask a question and discover how structured learning can support your goals.</p>
+        <a href="#contact" class="btn">Send a Demo Enquiry ↓</a>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <p class="eyebrow">Let's connect</p>
+          <h2>Have a question?</h2>
+          <p>Use this sample enquiry form to preview the experience. This demo does not transmit or store your information.</p>
+          <div class="contact-hint">🔒 Privacy-friendly demo: your entries stay in this page and are not sent to a server.</div>
+        </div>
+        <form id="enquiryForm" class="reveal">
+          <div class="field">
+            <label for="studentName">Your name</label>
+            <input id="studentName" name="studentName" type="text" placeholder="Enter your name" minlength="2" maxlength="70" required>
+          </div>
+          <div class="field">
+            <label for="studentEmail">Email address (optional)</label>
+            <input id="studentEmail" name="studentEmail" type="email" placeholder="you@example.com" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="courseChoice">Interested course</label>
+            <select id="courseChoice" name="courseChoice" required>
+              <option value="">Choose a course</option>
+              <option>Mathematics</option>
+              <option>Science</option>
+              <option>Computer Science</option>
+              <option>General enquiry</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Your question</label>
+            <textarea id="message" name="message" placeholder="What would you like to know?" maxlength="600" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%">Preview Enquiry ✓</button>
+          <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home">🎓 Bright <span>Future</span></a>
+      <p>© <span id="year"></span> Bright Future Academy · Demo website</p>
+      <div class="footer-links"><a href="#courses">Courses</a><a href="#teachers">Teachers</a><a href="#contact">Enquiry</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add("visible"));
+    }
+
+    document.getElementById("enquiryForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const name = document.getElementById("studentName").value.trim();
+      const course = document.getElementById("courseChoice").value;
+      const message = document.getElementById("formMessage");
+
+      if (name.length < 2 || !course) {
+        message.textContent = "Please enter your name and choose a course.";
+        message.style.color = "#b42318";
+        return;
+      }
+
+      message.textContent = "Demo successful, " + name + "! Your form was checked, but nothing was sent or saved.";
+      message.style.color = "#247647";
+      event.target.reset();
+    });
+  </script>
 </body>
 </html>

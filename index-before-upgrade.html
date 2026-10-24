@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bright Future Academy | Learn Without Limits</title>
+    <meta name="description" content="Explore courses and learning opportunities at Bright Future Academy.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #202044;
+            background: #fffdf8;
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 8%;
+            background: white;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: #5927c7;
+        }
+
+        nav a {
+            color: #33334f;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #f15bb5;
+        }
+
+        .hero {
+            padding: 90px 8%;
+            text-align: center;
+            color: white;
+            background: linear-gradient(125deg, #5927c7, #9237db, #f15bb5);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 16px;
+            margin-bottom: 20px;
+            border-radius: 30px;
+            background: #ffffff25;
+            border: 1px solid #ffffff70;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            max-width: 850px;
+            margin: 0 auto 20px;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 14px 25px;
+            border-radius: 10px;
+            background: #ffdf5d;
+            color: #292047;
+            font-weight: 800;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: #8a36d6;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        .section h2 {
+            margin: 8px 0 12px;
+            font-size: clamp(28px, 4vw, 40px);
+        }
+
+        .intro {
+            max-width: 620px;
+            margin: 0 auto;
+            color: #66667d;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 35px;
+            text-align: left;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: 18px;
+            background: white;
+            border: 1px solid #eee8fa;
+            box-shadow: 0 8px 25px #39236b0d;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px #39236b1c;
+        }
+
+        .emoji {
+            display: inline-grid;
+            place-items: center;
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: #f0e6ff;
+            font-size: 28px;
+        }
+
+        .card h3 {
+            margin: 17px 0 8px;
+            color: #5927c7;
+        }
+
+        .card p {
+            color: #66667d;
+        }
+
+        .about {
+            background: #f1eaff;
+        }
+
+        .about-content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .feature {
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: white;
+            font-weight: bold;
+        }
+
+        .contact {
+            background: #202044;
+            color: white;
+        }
+
+        .contact .intro {
+            color: #e0d9f3;
+        }
+
+        footer {
+            padding: 24px 8%;
+            background: #17172f;
+            color: #ddd6f3;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+
+            .hero {
+                padding: 65px 6%;
+            }
+
+            .section {
+                padding: 55px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">✦ Bright Future</div>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="tag">YOUR FUTURE STARTS HERE ✨</div>
+        <h1>Dream Big.<br>Learn Boldly.</h1>
+        <p>
+            Discover your potential with learning that builds
+            knowledge, confidence and skills for the future.
+        </p>
+        <a class="button" href="#courses">Explore Our Courses ↗</a>
+    </header>
+
+    <section class="section" id="courses">
+        <div class="eyebrow">Learn something amazing</div>
+        <h2>Explore Our Courses</h2>
+        <p class="intro">
+            Build strong foundations, discover new interests
+            and take your next step with confidence.
+        </p>
+
+        <div class="courses">
+            <article class="card">
+                <div class="emoji">📐</div>
+                <h3>Mathematics</h3>
+                <p>Develop logical thinking and solve problems with confidence.</p>
+            </article>
+
+            <article class="card">
+                <div class="emoji">🔬</div>
+                <h3>Science</h3>
+                <p>Explore scientific ideas and understand the world around you.</p>
+            </article>
+
+            <article class="card">
+                <div class="emoji">💻</div>
+                <h3>Computer Science</h3>
+                <p>Discover programming and build essential digital skills.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="about-content">
+            <div class="eyebrow">More than just lessons</div>
+            <h2>Learn Today. Lead Tomorrow.</h2>
+            <p class="intro">
+                Bright Future Academy is a sample academy website
+                designed to demonstrate a welcoming, student-focused
+                learning experience.
+            </p>
+
+            <div class="features">
+                <div class="feature">🎯 Clear Learning Goals</div>
+                <div class="feature">🌱 Growth Mindset</div>
+                <div class="feature">💡 Curious Minds</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <div class="eyebrow">Take the first step</div>
+        <h2>Ready to Start Learning?</h2>
+        <p class="intro">
+            Contact the academy to ask about courses and admissions.
+        </p>
+        <a class="button"
+           href="mailto:admissions@example.com?subject=Course%20Enquiry">
+            Send an Enquiry ✉
+        </a>
+    </section>
+
+    <footer>
+        <p>© 2026 Bright Future Academy · Demo website for portfolio use</p>
+    </footer>
+
+</body>
+</html>
