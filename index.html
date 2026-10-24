@@ -4,128 +4,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bright Future Academy</title>
+
+    <title>Bright Future Academy | Learn Without Limits</title>
+    <meta name="description" content="Explore courses and learning opportunities at Bright Future Academy.">
 
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #1e293b;
-            background: #f8fafc;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #202044;
+            background: #fffdf8;
+            line-height: 1.6;
         }
 
         nav {
-            background: #123c69;
-            color: white;
-            padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
+            padding: 20px 8%;
+            background: white;
             flex-wrap: wrap;
-            gap: 12px;
         }
 
-        nav h2 {
-            margin: 0;
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: #5927c7;
         }
 
         nav a {
-            color: white;
+            color: #33334f;
             text-decoration: none;
-            margin-left: 18px;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #f15bb5;
         }
 
         .hero {
+            padding: 90px 8%;
             text-align: center;
-            padding: 85px 20px;
-            background: linear-gradient(135deg, #123c69, #087e8b);
             color: white;
+            background: linear-gradient(125deg, #5927c7, #9237db, #f15bb5);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 16px;
+            margin-bottom: 20px;
+            border-radius: 30px;
+            background: #ffffff25;
+            border: 1px solid #ffffff70;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         .hero h1 {
-            font-size: clamp(32px, 5vw, 52px);
-            margin: 0 0 18px;
+            max-width: 850px;
+            margin: 0 auto 20px;
+            font-size: clamp(36px, 6vw, 64px);
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 19px;
-            line-height: 1.6;
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 18px;
         }
 
         .button {
             display: inline-block;
-            background: #fbbf24;
-            color: #123047;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-weight: bold;
+            margin-top: 28px;
+            padding: 14px 25px;
+            border-radius: 10px;
+            background: #ffdf5d;
+            color: #292047;
+            font-weight: 800;
             text-decoration: none;
+            border: none;
             cursor: pointer;
-            margin-top: 16px;
+            transition: transform 0.2s;
         }
 
-        section {
-            padding: 55px 8%;
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 70px 8%;
             text-align: center;
+        }
+
+        .eyebrow {
+            color: #8a36d6;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        .section h2 {
+            margin: 8px 0 12px;
+            font-size: clamp(28px, 4vw, 40px);
+        }
+
+        .intro {
+            max-width: 620px;
+            margin: 0 auto;
+            color: #66667d;
         }
 
         .courses {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 22px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 35px;
+            text-align: left;
         }
 
         .card {
+            padding: 28px;
+            border-radius: 18px;
             background: white;
-            padding: 28px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 18px #00000010;
+            border: 1px solid #eee8fa;
+            box-shadow: 0 8px 25px #39236b0d;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px #39236b1c;
+        }
+
+        .emoji {
+            display: inline-grid;
+            place-items: center;
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: #f0e6ff;
+            font-size: 28px;
         }
 
         .card h3 {
-            color: #087e8b;
+            margin: 17px 0 8px;
+            color: #5927c7;
         }
 
-        #about {
-            background: #eaf3f8;
+        .card p {
+            color: #66667d;
         }
 
-        #contact p {
-            line-height: 1.7;
+        .about {
+            background: #f1eaff;
+        }
+
+        .about-content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .feature {
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: white;
+            font-weight: bold;
+        }
+
+        .contact {
+            background: #202044;
+            color: white;
+        }
+
+        .contact .intro {
+            color: #e0d9f3;
         }
 
         footer {
-            background: #123c69;
-            color: white;
+            padding: 24px 8%;
+            background: #17172f;
+            color: #ddd6f3;
             text-align: center;
-            padding: 22px;
+            font-size: 14px;
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
             nav {
                 justify-content: center;
+                text-align: center;
             }
 
             nav a {
-                margin: 0 7px;
+                display: inline-block;
+                margin: 8px;
             }
 
             .hero {
-                padding: 60px 18px;
+                padding: 65px 6%;
+            }
+
+            .section {
+                padding: 55px 6%;
             }
         }
     </style>
 </head>
 
 <body>
+
     <nav>
-        <h2>Bright Future</h2>
+        <div class="logo">✦ Bright Future</div>
         <div>
             <a href="#home">Home</a>
             <a href="#courses">Courses</a>
@@ -135,50 +243,77 @@
     </nav>
 
     <header class="hero" id="home">
-        <h1>Build Your Bright Future</h1>
-        <p>Learn today. Lead tomorrow.<br>
-           Quality education to help you achieve your goals.</p>
-        <a class="button" href="#contact">Enquire Now</a>
+        <div class="tag">YOUR FUTURE STARTS HERE ✨</div>
+        <h1>Dream Big.<br>Learn Boldly.</h1>
+        <p>
+            Discover your potential with learning that builds
+            knowledge, confidence and skills for the future.
+        </p>
+        <a class="button" href="#courses">Explore Our Courses ↗</a>
     </header>
 
-    <section id="courses">
-        <h2>Our Courses</h2>
-        <p>Explore our learning programs.</p>
+    <section class="section" id="courses">
+        <div class="eyebrow">Learn something amazing</div>
+        <h2>Explore Our Courses</h2>
+        <p class="intro">
+            Build strong foundations, discover new interests
+            and take your next step with confidence.
+        </p>
 
         <div class="courses">
-            <div class="card">
+            <article class="card">
+                <div class="emoji">📐</div>
                 <h3>Mathematics</h3>
-                <p>Strengthen your concepts and problem-solving skills.</p>
-            </div>
+                <p>Develop logical thinking and solve problems with confidence.</p>
+            </article>
 
-            <div class="card">
+            <article class="card">
+                <div class="emoji">🔬</div>
                 <h3>Science</h3>
-                <p>Understand scientific concepts through clear learning.</p>
-            </div>
+                <p>Explore scientific ideas and understand the world around you.</p>
+            </article>
 
-            <div class="card">
+            <article class="card">
+                <div class="emoji">💻</div>
                 <h3>Computer Science</h3>
-                <p>Build your programming and computer fundamentals.</p>
+                <p>Discover programming and build essential digital skills.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="about-content">
+            <div class="eyebrow">More than just lessons</div>
+            <h2>Learn Today. Lead Tomorrow.</h2>
+            <p class="intro">
+                Bright Future Academy is a sample academy website
+                designed to demonstrate a welcoming, student-focused
+                learning experience.
+            </p>
+
+            <div class="features">
+                <div class="feature">🎯 Clear Learning Goals</div>
+                <div class="feature">🌱 Growth Mindset</div>
+                <div class="feature">💡 Curious Minds</div>
             </div>
         </div>
     </section>
 
-    <section id="about">
-        <h2>About Our Academy</h2>
-        <p>We aim to make learning simple, engaging and effective.</p>
-        <p>Our goal is to help every student learn with confidence.</p>
-    </section>
-
-    <section id="contact">
-        <h2>Admissions Are Open!</h2>
-        <p>Interested in joining us? Get in touch to learn more.</p>
-        <button class="button" onclick="alert('Thank you for your interest! Please contact the academy to complete your enquiry.')">
-            Enquire Now
-        </button>
+    <section class="section contact" id="contact">
+        <div class="eyebrow">Take the first step</div>
+        <h2>Ready to Start Learning?</h2>
+        <p class="intro">
+            Contact the academy to ask about courses and admissions.
+        </p>
+        <a class="button"
+           href="mailto:admissions@example.com?subject=Course%20Enquiry">
+            Send an Enquiry ✉
+        </a>
     </section>
 
     <footer>
-        <p>&copy; 2026 Bright Future Academy. All rights reserved.</p>
+        <p>© 2026 Bright Future Academy · Demo website for portfolio use</p>
     </footer>
+
 </body>
 </html>
